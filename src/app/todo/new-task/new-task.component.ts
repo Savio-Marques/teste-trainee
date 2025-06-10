@@ -15,6 +15,10 @@ export class NewTaskComponent {
   count = 0;
   addTask() {
     if(this.count > 0) return
+    if(!this.newTaskTitle || !this.newTaskTitle.trim()){
+      alert("Insira um título válido")
+      return
+    }
     const newTodo: Todo = {
       id: this.todoService.getTodoNewId(),
       title: this.newTaskTitle,
