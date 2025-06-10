@@ -4,6 +4,8 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  height: 80vh; 
+
 }
 
 .todo-list_container {
@@ -17,12 +19,17 @@
   padding: 2.5rem;
   width: 80vw;
   overflow-y: hidden;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .todo-list_todo {
-  display: flex;
+  display: flex; 
   flex-direction: column;
   gap: 0.5rem;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .todo-buttons {
