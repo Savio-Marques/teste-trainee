@@ -1,123 +1,115 @@
-# Desafio de Código: Gerenciador de Tarefas (Angular)
+# Relatório Técnico - Sávio Marques de Souza
 
-## 1. Visão Geral do Projeto
+## 1. Visão Geral da Solução:
 
-Bem-vindo(a) ao nosso desafio de código!
-
-Este repositório contém o código-fonte de uma aplicação de gerenciamento de tarefas desenvolvida em Angular. O projeto foi iniciado por um fornecedor anterior, mas foi entregue incompleto, instável e com diversos bugs.
-
----
-
-## 2. O Cenário
-
-A empresa IMTS Group precisa de uma aplicação funcional para que seus colaboradores gerenciem suas tarefas. O projeto foi entregue com uma série de problemas que impedem até mesmo sua inicialização, além de falhas de funcionalidade e usabilidade identificadas por um analista de qualidade (QA).
+Olá, nesse teste técnico fui desafiado a diagnósticar e resolver alguns bugs da aplicação de Tarefas da IMTS com base no meu conhecimento e nos requisitos pedidos, conseguir organizar e
+fazer com que alguma das funções principais do programa funcionassem como deviam, como iniciar a aplicação, duplicação de tarefas salvas, traduzir botão, ocultar e exibir tarefas, validações,
+estilizações e entre outros.
 
 ---
 
-## 3. Sua Missão
-
-Sua missão é assumir este projeto e transformá-lo em uma aplicação robusta e funcional. Você deverá:
-1.  **Diagnosticar e corrigir os erros** que atualmente impedem a aplicação de iniciar com o comando `npm start`.
-2.  **Implementar todas as correções e melhorias** detalhadas na lista de requisitos técnicos abaixo.
-3.  **Entregar o projeto final** seguindo as instruções de entrega.
-
----
-
-## 4. Como Começar
-
-Para configurar o ambiente, siga os passos:
+## 2. Como Executar a Aplicação:
 
 1.  **Clone o repositório** para sua máquina local.
+    ```bash
+    git clone git@github.com:Savio-Marques/teste-trainee.git
+    ```
 2.  **Instale as dependências** do projeto:
     ```bash
     npm install
     ```
-3.  **Tente iniciar o servidor** de desenvolvimento:
+3.  **Inicie o servidor** de desenvolvimento:
     ```bash
     npm start
     ```
 
-> **Atenção:** A aplicação não irá iniciar corretamente. Seu primeiro desafio é investigar e consertar os erros que impedem a execução bem-sucedida deste comando.
+---
+
+## 3. Correção dos Erros Iniciais:
+
+O não funcionamento do **npm start** era gerada inicialmente pela falta do script **"start": "ng serve"** no package.json, erro de digitação no componente HeaderComponent, anteriormente "HeadeComponent", e erro no caminho da biblioteca Font Awesome, além de um pequeno alerta de que o componente anterior citado era exportado para dois módulos diferentes, tudo foi resolvido através da leitura do stack trace, que indicava o erro e o módulo.
 
 ---
 
-## 5. Requisitos Técnicos (Lista de Tarefas do QA)
+## 4. Relatório de Correção de Bugs e Melhorias:
 
-A seguir estão os pontos exatos que você deve abordar.
+### 4.1. Bugs corrigidos
 
-### 5.1. Bugs a Corrigir
+Pontos corrigidos e suas soluções
 
-1.  Ao clicar no botão “Salvar”, a tarefa está sendo adicionada duas vezes.
-2.  Só está sendo possível salvar uma tarefa a primeira vez que clica no botão “Salvar”, só é possível salvar uma nova tarefa após atualizar a página (F5)
-3.  O texto do botão de limpar todas as tarefas não está em português.
-4.  O botão “Exibir Tarefas Concluídas” está, na verdade, ocultando as tarefas concluídas.
-5.  O botão “Ocultar Tarefas Concluídas” tem o comportamento invertido, exibindo as tarefas concluídas.
-6.  Ao clicar em “Limpar Tarefas Concluídas”, a ação é executada sem pedir uma confirmação ao usuário.
-7.  O botão “Limpar Tarefas Concluídas” está removendo as tarefas não concluídas em vez das concluídas.
-8.  O botão “Editar” não está funcional. O comportamento esperado é: ao clicar, o campo “Título da Tarefa” deve ser preenchido com o texto da tarefa selecionada. Ao salvar, o item na lista deve ser atualizado e o campo de texto limpo.
-9.  O botão “Editar” está desalinhado e deve ser posicionado ao lado do botão “Remover”.
-10.  O botão “Remover” deve ter a cor vermelha para indicar uma ação destrutiva.
-11. A lista de tarefas não apresenta uma barra de rolagem quando o número de itens ultrapassa a altura do painel, impedindo a visualização de todas as tarefas.
-12. Salvar sem digitar um “Título da Tarefa” está adicionando um item em branco à lista.
-13. Digitar apenas espaços no campo “Título da Tarefa” e salvar também está adicionando um item em branco.
+1.  Ao clicar no botão “Salvar”, a tarefa está sendo adicionada duas vezes. <br>
+    S: O erro era gerado apenas pela duplicação do código `this.todoService.addTodo(newTodo);` no new-task.component.ts.
 
-### 5.2. Melhorias a Implementar
+2.  O texto do botão de limpar todas as tarefas não está em português. <br>
+    S: Apenas alterei o clear All para Limpar Todos do getter `labelClearAll()`.
 
-1.  Implementar um botão “Ordenar de A a Z” que, ao ser clicado, ordene alfabeticamente a lista de tarefas visíveis.
-2.  Permitir que o usuário adicione uma tarefa pressionando a tecla `Enter` no campo de texto, além do clique no botão “Salvar”.
-3.  Permitir a adição de múltiplas tarefas de uma só vez. O usuário deverá digitar os títulos separados pelo caractere `|` (pipe).
-4.  Implementar um filtro de palavras obscenas. Caso o usuário tente cadastrar uma tarefa contendo um palavrão, exiba a mensagem: “Não é permitido cadastrar tarefas com palavras obscenas.” (Sugestão de biblioteca: `https://github.com/web-mech/badwords`).
-5.  Adicionar a funcionalidade de exportar a lista de tarefas atual para um arquivo PDF. (Sugestão de biblioteca: `https://github.com/parallax/jsPDF`).
-6.  Substituir todos os `alert`s e `confirm`s nativos do navegador por uma experiência mais moderna, utilizando a biblioteca SweetAlert. (Sugestão: `https://sweetalert2.github.io/`).
+3.  O botão “Exibir Tarefas Concluídas” está, na verdade, ocultando as tarefas concluídas. <br>
+    S: Criei um getter `displayedTodos()` em todo.components.ts que funciona como uma váriavel dinâmica que mostra ou filtra a lista selecionada, alteração também incluida do todo.component.html com alteração da funções.
 
----
+4.  O botão “Ocultar Tarefas Concluídas” tem o comportamento invertido, exibindo as tarefas concluídas. <br>
+    S: Mesma solução do item 4.
 
-## 6. Instruções de Entrega
+5.  Ao clicar em “Limpar Tarefas Concluídas”, a ação é executada sem pedir uma confirmação ao usuário. <br> 
+    S: adicionei um condicional com `confirm()` para confirmar a solicitação do usuários.
 
-Ao finalizar todo o trabalho, você deve:
+6.  O botão “Limpar Tarefas Concluídas” está removendo as tarefas não concluídas em vez das concluídas. <br>
+    S: Alterei a de True para False a comparação da variável booleana em `clearCompletedTasks()` no arquivo todo.service.ts 
 
-1.  **Fazer o commit de cada item separadamente**, conforme detalhado na seção "Boas Práticas" abaixo. O histórico de commits é uma parte crucial da avaliação. 
+7.  O botão “Editar” está desalinhado e deve ser posicionado ao lado do botão “Remover”. <br>
+    S: No todo-item.component.html adicionei uma div com a class buttons envolvolendo os butões de editar e salvar, e com css setei o display para flex e alinhei com justify-content.
 
-2.  **Substituir o conteúdo deste `README.md`** pelo seu relatório técnico final. O seu relatório deve conter as seguintes seções:
+8.  O botão “Remover” deve ter a cor vermelha para indicar uma ação destrutiva. <br>
+    S: Removi o estilo em linha aplicado no HTML.
 
-    * **Relatório Técnico - [Seu Nome]**
-    * **1. Visão Geral da Solução:** Um breve resumo do que foi feito.
-    * **2. Como Executar a Aplicação:** Instruções claras para clonar, instalar e rodar o projeto (`npm install`, `npm start`).
-    * **3. Correção dos Erros Iniciais (`npm start`):** Descreva quais eram os erros que impediam a aplicação de rodar e como você os solucionou.
-    * **4. Relatório de Correção de Bugs:** Para cada bug da lista, explique a causa raiz e a solução que você implementou.
-    * **5. Relatório de Implementação de Melhorias:** Para cada melhoria, descreva sua abordagem técnica e quais bibliotecas foram utilizadas.
-    * **6. Relatório de Débito Técnico:** Para cada ítem da lista de bugs e melhorias que você não conseguiu resolver ou implementar, descreva quais foram as dificuldades que você enfrentou na qual fizerem com que você não tenha conseguido entregar.
-    * **7. Relatório de Melhorias:** Descreva quais melhorias (novas funcionalidades) você acha interessante que sejam implementadas para evoluir o sistema.
-    * **8. Decisões e Considerações:** (Opcional) Espaço para comentar qualquer decisão de arquitetura ou desafio interessante que você encontrou.
-    
+9. A lista de tarefas não apresenta uma barra de rolagem quando o número de itens ultrapassa a altura do painel, impedindo a visualização de todas as tarefas. <br>
+    S: Com css fiz alterações no container da todo setando a altura das classes envolvidas, usando overflow: hidden para a barra de rolagem, e flex-grow: 1 para o container expandir.
+
+10. Salvar sem digitar um “Título da Tarefa” está adicionando um item em branco à lista. <br>
+    S: Em new-task.component.ts adiconei uma validação com condicional que que checa que se o campo está preenchido e com método `.trim()` verifica se está preenchido com o caracteres de espaço, caso alguma das duas caiam na validação, alerta o usuário e não adiciona a tarefa.
+
+11. Digitar apenas espaços no campo “Título da Tarefa” e salvar também está adicionando um item em branco. <br>
+    S: Mesma solução do item 11.
+
+### 4.2. Melhorias Implementadas
+
+1.  Permitir que o usuário adicione uma tarefa pressionando a tecla `Enter` no campo de texto, além do clique no botão “Salvar”. <br>
+    S: no new-task.component.html adiconei na tag input o `(keyup.enter)="addTask()"` que possibilita adicionar a task com o Enter.
+
+2.  Adicionar a funcionalidade de exportar a lista de tarefas atual para um arquivo PDF. (Sugestão de biblioteca: `https://github.com/parallax/jsPDF`). <br>
+    S: Implentei a biblioteca sugerida que exporta o PDF de acordo com a configuração feita no todo.component.ts, como tive experincia com exportador de pdf em outros projetos pessoais, não foi algo tão desafiador, mas necessitei de ajuda da IA gemini.
 
 ---
 
-## 7. Boas Práticas e Uso de Ferramentas
+## 5. Relatório de Débito Técnico:
 
-### Commits Atômicos
-Cada bug corrigido e cada melhoria implementada deve ser um commit individual no repositório. Suas mensagens de commit devem ser claras e descritivas (ex: `fix: corrige a duplicação de tarefas ao salvar` ou `feat: implementa a exportação para PDF`). Isso é fundamental para avaliarmos seu processo de desenvolvimento.
+### 5.1. Bugs não corrigidos:
 
-### Uso de Inteligência Artificial
-O uso de ferramentas de Inteligência Artificial (como ChatGPT, GitHub Copilot, etc.) é permitido como um recurso de apoio. No entanto, o mais importante é que você **entenda profundamente** o código e as soluções que está entregando. Esteja preparado(a) para explicar suas escolhas e defender a lógica implementada no relatório e na entrevista técnica, pois o conhecimento da solução é de sua total responsabilidade.
+1.  Só está sendo possível salvar uma tarefa a primeira vez que clica no botão “Salvar”, só é possível salvar uma nova tarefa após atualizar a página (F5) <br>
+    R: Como não tenho conhecimento mais aprofudando em Angular, não conseguir achar a solução adequada para o problema, mas tentei ajustar a array de ToDos para que a cada tarefa adicionada  fosse implementada em outra array criada com as tarefas anteriores, e colocando a função `loadTodos()` em salvar, mas sem exitô.
+
+2.  O botão “Editar” não está funcional. O comportamento esperado é: ao clicar, o campo “Título da Tarefa” deve ser preenchido com o texto da tarefa selecionada. Ao salvar, o item na lista deve ser atualizado e o campo de texto limpo. <br>
+    R: Não consegui desenvolver a lógica de implementação para o botão de editar, além da falta de experiencia na linguagem angular que dificultou saber o funcionamento de cada componente.
+
+### 5.2. Melhorias Não Implementadas:
+
+1.  Implementar um botão “Ordenar de A a Z” que, ao ser clicado, ordene alfabeticamente a lista de tarefas visíveis. <br>
+2.  Permitir a adição de múltiplas tarefas de uma só vez. O usuário deverá digitar os títulos separados pelo caractere `|` (pipe). <br>
+    R: Apesar da pesquisa e da ideia de checar o incluide de "|" a string recebida do input, e quebrar com split, a falta de conhecimento sobre a linguagem dificultou a implementação lógica.
+3.  Implementar um filtro de palavras obscenas. Caso o usuário tente cadastrar uma tarefa contendo um palavrão, exiba a mensagem: “Não é permitido cadastrar tarefas com palavras obscenas.” (Sugestão de biblioteca: `https://github.com/web-mech/badwords`).<br>
+4.  Substituir todos os `alert`s e `confirm`s nativos do navegador por uma experiência mais moderna, utilizando a biblioteca SweetAlert. (Sugestão: `https://sweetalert2.github.io/`).<br>
+
 
 ---
 
-## 8. Critérios de Avaliação
+## 6. Relatório de Melhorias:
 
-Lembre-se que avaliaremos:
-* **Funcionalidade:** Cumprimento de todos os requisitos.
-* **Qualidade do Código:** Legibilidade, organização e boas práticas.
-* **Lógica e Eficiência:** Robustez das suas soluções.
-* **Comunicação:** Clareza do seu relatório técnico (`README.md`).
-* **Controle de Versão:** Qualidade e granularidade das suas mensagens de commit.
+Apesar de ser algo simples, a várias funcionaldiades que pensei enquanto resolvia os problemas:
+
+1. Válidade de tarefas.
+2. Categorias.
+3. Arrastar e soltar.
+4. Melhorias visuais.
+5. Sistema de Login.
+6. Responsividade.
 
 ---
-
-## 9. Uma Palavra Final
-
-Entendemos que desafios como este podem ser complexos. Se você não conseguir concluir 100% dos itens, não desanime! Entregue o máximo que conseguir e documente seu progresso.
-
-Para nós, a jornada é tão importante quanto o destino. Não estamos buscando um profissional que saiba tudo, mas sim alguém com vontade de aprender, evoluir e que entenda que os erros são parte fundamental do crescimento.
-
-**Boa sorte!**
