@@ -57,14 +57,15 @@ export class TodoComponent implements OnInit {
     this.loadTodos();
   }
 
-  toggleCompletedTasks() {
-    this.showCompletedTasks = !this.showCompletedTasks;
-    this.loadTodos();
-    this.todos = this.filteredTodos();
+  get displayedTodos(): Todo[] {
+    if (this.showCompletedTasks) {
+      return this.todos;
+    }
+    return this.todos.filter(todo => !todo.completed);
   }
 
-  filteredTodos() {
-    return this.showCompletedTasks ? this.todos : this.todos.filter(todo => !todo.completed);
+  toggleCompletedTasksView(): void {
+    this.showCompletedTasks = !this.showCompletedTasks;
   }
 
   get labelClearAll(){
