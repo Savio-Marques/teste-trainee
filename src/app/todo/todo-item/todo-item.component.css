@@ -27,21 +27,22 @@
   text-decoration: line-through;
 }
 
-.todo-item_edit{
-  color: blue;
-  width: 10px;
-  width: fit-content;
-}
-.todo-item_delete {
-  width: 10px;
-  width: fit-content;
-  color: red;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
+    .todo-item_edit{
+    color: blue;
+    width: 10px;
+    width: fit-content;
+    justify-content: end;
+  }
 
-
+  .todo-item_delete {
+    width: 10px;
+    width: fit-content;
+    color: red;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
 .fa-trash-alt:hover {
   color: rgba(65, 63, 63, 0.62);
 }

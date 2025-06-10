@@ -83,7 +83,7 @@ export class TodoService {
   }
 
   clearCompletedTasks() {
-    this.todos = this.todos.filter(({ completed }) => completed === true);
+    this.todos = this.todos.filter(({ completed }) => completed === false);
     this.updateLocalStorageAndSave();
   }
 }

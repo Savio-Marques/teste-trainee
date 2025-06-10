@@ -53,7 +53,9 @@ export class TodoComponent implements OnInit {
   }
 
   clearCompletedTasks() {
-    this.todoService.clearCompletedTasks();
+    if(confirm("Deseja realmente apagar as tarefas completas?")){
+          this.todoService.clearCompletedTasks();
+    }
     this.loadTodos();
   }
 
