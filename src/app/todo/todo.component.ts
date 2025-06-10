@@ -31,14 +31,18 @@ export class TodoComponent implements OnInit {
     };
 
     this.todoService.addTodo(newTodo);
+
+    this.loadTodos();
   }
 
   updateTodo(updatedTodo: Todo) {
     this.todoService.updateTodo(updatedTodo);
+    this.loadTodos();
   }
 
   deleteTodo(todoId: number) {
     this.todoService.deleteTodo(todoId);
+    this.loadTodos();
   }
 
   clearAll() {

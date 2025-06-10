@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Todo } from '../models/todo.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,7 +38,7 @@ export class TodoService {
   }
 
   addTodo(newTodo: Todo): void {
-    this.todos.push(newTodo);
+    this.todos = [...this.todos, newTodo];
     this.sortTodos();
     this.updateLocalStorageAndSave();
   }
